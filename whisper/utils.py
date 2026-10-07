@@ -1,8 +1,8 @@
 import json
 import os
-import unicodedata
 import re
 import sys
+import unicodedata
 import zlib
 from typing import Callable, List, Optional, TextIO
 
@@ -169,7 +169,9 @@ class SubtitlesWriter(ResultWriter):
                         long_pause = (
                             not preserve_segments and timing["start"] - last > 3.0
                         )
-                        has_room = line_len + _display_width(timing["word"]) <= max_line_width
+                        has_room = (
+                            line_len + _display_width(timing["word"]) <= max_line_width
+                        )
                         seg_break = i == 0 and len(subtitle) > 0 and preserve_segments
                         if (
                             line_len > 0

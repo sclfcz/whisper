@@ -13,7 +13,8 @@ def display_width(text: str) -> int:
 def chinese_result(text: str) -> dict:
     # split_tokens_on_unicode() emits one word per decoded code point for zh/ja/yue.
     words = [
-        {"word": ch, "start": i * 0.3, "end": 0.3 + i * 0.3} for i, ch in enumerate(text)
+        {"word": ch, "start": i * 0.3, "end": 0.3 + i * 0.3}
+        for i, ch in enumerate(text)
     ]
     return {"segments": [{"start": 0.0, "end": 9.0, "text": text, "words": words}]}
 
@@ -49,7 +50,9 @@ def test_latin_lines_are_unchanged(writer):
     result = english_result("the quick brown fox jumps over the lazy dog")
 
     subtitles = list(
-        writer(False).iterate_result(result, {"max_line_width": 20, "max_line_count": 2})
+        writer(False).iterate_result(
+            result, {"max_line_width": 20, "max_line_count": 2}
+        )
     )
 
     lines = [line for _, _, block in subtitles for line in block.split("\n")]
